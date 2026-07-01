@@ -122,6 +122,16 @@ function initFormSubmit() {
     // Open WhatsApp
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
 
+    // Track Lead conversion with Meta Pixel
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: product,
+        content_category: budget,
+        value: 0,
+        currency: 'BRL'
+      });
+    }
+
     // Button feedback
     const btn = document.getElementById('btn-submit');
     btn.innerHTML = `
